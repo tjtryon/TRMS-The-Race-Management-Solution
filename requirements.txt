@@ -1,0 +1,24 @@
+# TRMS: The Race Management Solution - Python Dependencies
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Core dependencies
+pydantic>=2.0.0
+PyYAML>=6.0.0
+mysql-connector-python>=8.0.0
+
+# Development dependencies
+python-dotenv>=1.0.0
+
+# Logging
+structlog>=23.0.0
+
+# Optional GUI dependencies (for future TRRS GUI)
+# PyGObject>=3.40.0  # Uncomment when implementing GTK4 GUI
+
+# Optional web dependencies (for future TRWS)
+# flask>=2.3.0       # Uncomment when implementing web interface
+# flask-cors>=4.0.0  # Uncomment when implementing web interface
+
+# Testing dependencies (optional)
+# pytest>=7.0.0
+# pytest-cov>=4.0.0

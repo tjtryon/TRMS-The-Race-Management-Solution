@@ -2,13 +2,13 @@
 
 """
 ═══════════════════════════════════════════════════════════════════════════════
-🏁 Race Models for TEMS
+🏁 Race Models for TRMS
 ═══════════════════════════════════════════════════════════════════════════════
 
 📝 DESCRIPTION:
-    Shared race models used by both TERS and TRTS.
+    Shared race models used by both TRRS and TRTS.
 
-👤 AUTHOR: TEMS Development Team
+👤 AUTHOR: TRMS Development Team
 📅 CREATED: 2024
 🏷️ VERSION: 1.0.0
 
@@ -21,7 +21,7 @@ from pydantic import BaseModel, Field, validator
 from ..database.connection import db_manager
 
 class Race(BaseModel):
-    """Race model for TEMS ecosystem."""
+    """Race model for TRMS ecosystem."""
     race_id: Optional[int] = Field(None, description="Race ID")
     race_name: str = Field(..., description="Race name")
     race_description: Optional[str] = Field(None, description="Description")
@@ -35,7 +35,7 @@ class Race(BaseModel):
     created_at: Optional[datetime] = Field(None, description="Created timestamp")
     updated_at: Optional[datetime] = Field(None, description="Updated timestamp")
     
-    # TERS specific fields
+    # TRRS specific fields
     registration_open: bool = Field(default=True, description="Registration open")
     registration_limit: Optional[int] = Field(None, description="Max participants")
     entry_fee: Optional[float] = Field(None, description="Entry fee")
@@ -159,8 +159,7 @@ class RaceManager:
         
         try:
             results = db_manager.execute_query(query)
-            return [Race(**row) for row in resultsRetryTTContinueEditTTUnder the TRMS: The Race Management Solution directory, create links or bash shells to run TERS: The Event Registration Solution/console/race_registration_console.py and The Event Registration Solution/gui/race_registration_gui.py and TRTS: The Race Timing Solution/console/race_timing_console.py and TRTS: The Race Timing Solution/gui/race_timing_gui.py.You will need to source activate a virtual Python environment if it is not in a docker.  If you are in docker, python should work fine without the layer of an extra python virtual environmentEditI'll continue the setup script and add convenient launcher scripts in the TEMS base directory for running all the applications. These scripts will handle virtual environment activation when needed and proper path setup.
-bash# Continue from where we left off...
+            return [Race(**row) for row in results]
         except Exception as e:
             print(f"Error fetching upcoming races: {e}")
             return []

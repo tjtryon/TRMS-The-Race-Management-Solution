@@ -2,14 +2,14 @@
 
 """
 ═══════════════════════════════════════════════════════════════════════════════
-🔌 TEMS Unified Database Connection Management
+🔌 TRMS Unified Database Connection Management
 ═══════════════════════════════════════════════════════════════════════════════
 
 📝 DESCRIPTION:
     Database connection management with automatic cloud/local switching,
     connection pooling, and failover support.
 
-👤 AUTHOR: TEMS Development Team
+👤 AUTHOR: TRMS Development Team
 📅 CREATED: 2024
 🏷️ VERSION: 1.0.0
 
@@ -59,7 +59,7 @@ class DatabaseManager:
             logger.info(f"Attempting cloud database connection to {self.config.cloud_host}")
             
             pool_config = {
-                'pool_name': 'tems_cloud_pool',
+                'pool_name': 'trms_cloud_pool',
                 'pool_size': 10,
                 'pool_reset_session': True,
                 'host': self.config.cloud_host,
@@ -96,7 +96,7 @@ class DatabaseManager:
             logger.info(f"Connecting to local database at {self.config.local_host}")
             
             pool_config = {
-                'pool_name': 'tems_local_pool',
+                'pool_name': 'trms_local_pool',
                 'pool_size': 5,
                 'pool_reset_session': True,
                 'host': self.config.local_host,

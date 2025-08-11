@@ -2,14 +2,14 @@
 
 """
 ═══════════════════════════════════════════════════════════════════════════════
-⚙️ TEMS Unified Configuration Management
+⚙️ TRMS Unified Configuration Management
 ═══════════════════════════════════════════════════════════════════════════════
 
 📝 DESCRIPTION:
-    Centralized configuration for all TEMS solutions with automatic cloud/local
+    Centralized configuration for all TRMS solutions with automatic cloud/local
     database switching and Docker support.
 
-👤 AUTHOR: TEMS Development Team
+👤 AUTHOR: TRMS Development Team
 📅 CREATED: 2024
 🏷️ VERSION: 1.0.0
 
@@ -23,7 +23,7 @@ from pydantic import BaseModel, Field
 from pathlib import Path
 
 # Import path resolver
-from .paths import paths, TEMS_BASE, TRDS_DIR
+from .paths import paths, TRMS_BASE, TRDS_DIR
 
 class DatabaseConfig(BaseModel):
     """Database configuration with cloud/local support."""
@@ -36,8 +36,8 @@ class DatabaseConfig(BaseModel):
     cloud_port: int = Field(default=3306, description="Cloud database port")
     
     # Shared settings
-    database: str = Field(default="tems_db", description="Database name")
-    user: str = Field(default="tems", description="Database user")
+    database: str = Field(default="trms_db", description="Database name")
+    user: str = Field(default="trms", description="Database user")
     password: str = Field(default="", description="Database password")
     
     # Control settings
@@ -70,18 +70,18 @@ class WebConfig(BaseModel):
     docker_port: int = Field(default=8000, description="Docker internal port")
     
     # API endpoints
-    ters_api_url: str = Field(default="/api/ters", description="TERS API endpoint")
+    trrs_api_url: str = Field(default="/api/trrs", description="TRRS API endpoint")
     trts_api_url: str = Field(default="/api/trts", description="TRTS API endpoint")
 
 class DockerConfig(BaseModel):
     """Docker deployment configuration."""
     compose_file: str = Field(default="docker-compose.yml", description="Compose file")
-    network_name: str = Field(default="tems-network", description="Docker network")
+    network_name: str = Field(default="trms-network", description="Docker network")
     
     # Service names
-    db_service: str = Field(default="tems-db", description="Database service")
-    web_service: str = Field(default="tems-web", description="Web service")
-    nginx_service: str = Field(default="tems-nginx", description="Nginx service")
+    db_service: str = Field(default="trms-db", description="Database service")
+    web_service: str = Field(default="trms-web", description="Web service")
+    nginx_service: str = Field(default="trms-nginx", description="Nginx service")
     
     # Volumes
     use_volumes: bool = Field(default=True, description="Use Docker volumes")
@@ -95,11 +95,11 @@ class LoggingConfig(BaseModel):
     max_bytes: int = Field(default=10485760, description="Max log file size (10MB)")
     backup_count: int = Field(default=5, description="Number of backup files")
 
-class TEMSConfig(BaseModel):
-    """Master configuration for TEMS ecosystem."""
+class TRMSConfig(BaseModel):
+    """Master configuration for TRMS ecosystem."""
     # Environment
     environment: str = Field(default="development", description="Environment name")
-    version: str = Field(default="1.0.0", description="TEMS version")
+    version: str = Field(default="1.0.0", description="TRMS version")
     
     # Component configurations
     database: DatabaseConfig = Field(default_factory=DatabaseConfig)
@@ -108,7 +108,7 @@ class TEMSConfig(BaseModel):
     logging: LoggingConfig = Field(default_factory=LoggingConfig)
     
     # Paths (auto-populated)
-    tems_base: Path = Field(default_factory=lambda: TEMS_BASE)
+    trms_base: Path = Field(default_factory=lambda: TRMS_BASE)
     trds_dir: Path = Field(default_factory=lambda: TRDS_DIR)
     
     def save(self, environment: Optional[str] = None):
@@ -120,11 +120,11 @@ class TEMSConfig(BaseModel):
         with open(config_file, 'w') as f:
             yaml.dump(self.dict(), f, default_flow_style=False)
 
-def load_config(environment: Optional[str] = None) -> TEMSConfig:
+def load_config(environment: Optional[str] = None) -> TRMSConfig:
     """Load configuration from file and environment variables."""
     # Determine environment
     if not environment:
-        environment = os.getenv('TEMS_ENV', 'development')
+        environment = os.getenv('TRMS_ENV', 'development')
     
     # Load from config file
     config_file = TRDS_DIR / 'config' / f'{environment}.yaml'
@@ -132,9 +132,9 @@ def load_config(environment: Optional[str] = None) -> TEMSConfig:
     if config_file.exists():
         with open(config_file, 'r') as f:
             config_data = yaml.safe_load(f) or {}
-        config = TEMSConfig(**config_data)
+        config = TRMSConfig(**config_data)
     else:
-        config = TEMSConfig(environment=environment)
+        config = TRMSConfig(environment=environment)
     
     # Override with environment variables
     if 'DB_HOST' in os.environ:

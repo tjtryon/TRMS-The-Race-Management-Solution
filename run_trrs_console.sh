@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# ⏱️ TRTS Console Launcher
+# 🏁 TRRS Console Launcher
 # ═══════════════════════════════════════════════════════════════════════════════
 
 # Detect if we're in Docker
@@ -29,23 +29,9 @@ fi
 export TRMS_BASE="$(pwd)"
 export TRMS_ENV="${TRMS_ENV:-development}"
 
-# Run TRTS console
-echo "⏱️ Starting TRTS: The Race Timing Solution (Console)"
-echo "════════════════════════════════════════════════════════════════════════════════"
+# Run TRRS console
+echo "🏁 Starting TRRS: The Race Registration Solution (Console)"
+echo "════════════════════════════════════════════════════════════"
 
-cd "TRTS: The Race Timing Solution"
-
-# Check for the actual TRTS console file structure from GitHub
-if [ -f "race_timing_console.py" ]; then
-    $PYTHON_CMD race_timing_console.py
-elif [ -f "console/race_timing_console.py" ]; then
-    cd console
-    $PYTHON_CMD race_timing_console.py
-elif [ -f "src/race_timing_console.py" ]; then
-    cd src
-    $PYTHON_CMD race_timing_console.py
-else
-    echo "⚠️  TRTS console application not found"
-    echo "Please ensure TRTS is properly installed from GitHub"
-    echo "Repository: https://github.com/tjtryon/TRTS-The-Race-Timing-Solution"
-fi
+cd "TRRS: The Race Registration Solution/console"
+$PYTHON_CMD race_registration_console.py
