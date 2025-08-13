@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRMS — The Race Management Solution</title>
+  <meta name="description" content="TRMS is a complete suite for race registration, chip timing, web results, and data management: TRRS, TRTS, TRWS, and TRDS.">
+  <style>
+    :root{
+      --brand:#0b5cab;
+      --brand-dark:#083e74;
+      --ink:#1d2833;
+      --muted:#6b7280;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --accent:#e11d48;
+      --ring:rgba(11,92,171,.25);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.6;background:var(--bg)}
+    img{max-width:100%;height:auto;display:block}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{color:var(--brand-dark);}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    .btn{display:inline-block;padding:14px 22px;border-radius:999px;background:var(--brand);color:#fff;font-weight:600;border:0;box-shadow:0 10px 20px -10px var(--ring)}
+    .btn:hover{background:var(--brand-dark)}
+    .btn-outline{background:#fff;color:var(--brand);border:2px solid var(--brand)}
+    .section{padding:64px 0}
+    .muted{color:var(--muted)}
+    .grid{display:grid;gap:24px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    @media (max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+    .card{background:var(--card);border-radius:var(--radius);padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+    .pill{display:inline-flex;gap:10px;align-items:center;background:#eef6ff;color:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(11,92,171,.08),rgba(11,92,171,0))}
+    .hero-wrap{display:grid;gap:32px;align-items:center;grid-template-columns:1.2fr 1fr}
+    @media (max-width:1000px){.hero-wrap{grid-template-columns:1fr}}
+    .hero .img-mask{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(11,92,171,.25)}
+    .hero .img-mask::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,92,171,.25),rgba(11,92,171,0));}
+    .logos{opacity:.8;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+    .kicker{letter-spacing:.1em;text-transform:uppercase;color:var(--brand-dark);font-weight:800;font-size:.8rem}
+    h1{font-size:clamp(2rem,4vw,3rem);line-height:1.2;margin:8px 0 12px}
+    h2{font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.2;margin:0 0 8px}
+    h3{margin:.2rem 0 .4rem;font-size:1.15rem}
+    .feature{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:flex-start}
+    .icon{width:56px;height:56px;border-radius:14px;background:#eef6ff;display:grid;place-items:center}
+    .icon svg{width:28px;height:28px}
+    .row{display:grid;gap:28px;grid-template-columns:1fr 1fr}
+    @media (max-width:900px){.row{grid-template-columns:1fr}}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:#f1f5f9;border-radius:999px;padding:6px 10px;font-size:.9rem}
+    .cta{background:linear-gradient(180deg,rgba(11,92,171,.08),rgba(11,92,171,0));text-align:center}
+    .list{margin:0;padding-left:1.1rem}
+    .list li{margin:.35rem 0}
+    footer{padding:48px 0;color:#64748b;font-size:.95rem}
+    .gallery{display:grid;gap:14px;grid-template-columns:2fr 1fr}
+    .gallery .stack{display:grid;gap:14px}
+    @media (max-width:900px){.gallery{grid-template-columns:1fr}}
+    .note{font-size:.95rem;background:#fff7ed;border-left:4px solid #fb923c;padding:10px 12px;border-radius:6px}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TRMS — The Race Management Solution",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "description": "Complete suite for race registration, chip timing, web results, and shared data.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "softwareHelp": { "@type": "CreativeWork", "name": "Documentation", "url": "#" }
+  }
+  </script>
+</head>
+<body>
+  <!-- HERO -->
+  <header class="hero section">
+    <div class="container hero-wrap">
+      <div>
+        <span class="pill">
+          <span aria-hidden="true">🏁</span>
+          TRMS: The Race Management Solution
+        </span>
+        <h1>Registration, Timing, Web Results & Data — all in one cohesive suite.</h1>
+        <p class="muted">A professional toolkit for race directors and timing teams. Launch registration, time events (chip or manual), publish live results, and keep your data unified across every component.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
+          <a href="#components" class="btn">Explore the Suite</a>
+          <a href="#contact" class="btn btn-outline">Request a Demo</a>
+        </div>
+        <div class="logos" style="margin-top:22px">
+          <span class="badge">⏱️ TRTS Timing</span>
+          <span class="badge">🧾 TRRS Registration</span>
+          <span class="badge">🌐 TRWS Web</span>
+          <span class="badge">🗄️ TRDS Data</span>
+        </div>
+      </div>
+      <div class="img-mask">
+        <!-- Replace with your own race images in WordPress media library -->
+        <picture>
+          <source srcset="https://picsum.photos/1200/800?grayscale&random=11" media="(min-width:900px)">
+          <img src="https://picsum.photos/900/600?random=22" alt="Runners approaching a finish line">
+        </picture>
+      </div>
+    </div>
+  </header>
+
+  <!-- WHAT IS TRMS -->
+  <section class="section">
+    <div class="container row">
+      <div>
+        <h2>What is TRMS?</h2>
+        <p>TRMS brings together four tightly integrated solutions so race-day runs smoothly and your data stays in sync. Use the GUI launcher or console tools to orchestrate every part of your event from a single place.</p>
+        <ul class="list">
+          <li><strong>Unified experience:</strong> Launch and monitor all components with a GTK4 GUI or console.</li>
+          <li><strong>Cloud or local:</strong> Automatic database failover via TRDS keeps you online.</li>
+          <li><strong>Open & extensible:</strong> Modular pieces you can adopt individually or as a complete stack.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="feature">
+          <div class="icon" aria-hidden="true">
+            <!-- Clipboard icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 3h6a2 2 0 0 1 2 2v1h-2.5a1.5 1.5 0 0 0-3 0H9V5a2 2 0 0 1 2-2z"/>
+              <rect x="5" y="5" width="14" height="16" rx="2"/>
+            </svg>
+          </div>
+          <div>
+            <h3>TRRS — Registration</h3>
+            <p class="muted">Create races, manage participants, handle payments, and sync entries to timing.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="icon" aria-hidden="true">
+            <!-- Stopwatch -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="13" r="7"/><path d="M12 10v3l2 2M9 3h6M19 5l-2 2"/>
+            </svg>
+          </div>
+          <div>
+            <h3>TRTS — Timing</h3>
+            <p class="muted">Manual or RFID chip timing with sound alerts, results processing, and exports.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="icon" aria-hidden="true">
+            <!-- Globe -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a12 12 0 0 1 0 18M12 3a12 12 0 0 0 0 18"/>
+            </svg>
+          </div>
+          <div>
+            <h3>TRWS — Web</h3>
+            <p class="muted">Clean, unified web interface for live results, leaderboards, and event pages.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="icon" aria-hidden="true">
+            <!-- Database -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/>
+            </svg>
+          </div>
+          <div>
+            <h3>TRDS — Data</h3>
+            <p class="muted">Central config, shared models, logging, and cloud/local DB with failover.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY / RACE SCENES -->
+  <section class="section" aria-label="Race photography">
+    <div class="container">
+      <div class="gallery">
+        <div class="img-mask">
+          <img src="https://picsum.photos/1200/700?random=31" alt="Mass start of a road race">
+        </div>
+        <div class="stack">
+          <div class="img-mask"><img src="https://picsum.photos/800/360?random=33" alt="Cross-country pack on a trail"></div>
+          <div class="img-mask"><img src="https://picsum.photos/800/360?random=34" alt="Finish line chute with timing mats"></div>
+        </div>
+      </div>
+      <p class="note" style="margin-top:14px">Replace the placeholder images above with your own photos via the WordPress Media Library.</p>
+    </div>
+  </section>
+
+  <!-- COMPONENTS DEEP DIVE -->
+  <section id="components" class="section" style="background:#fff">
+    <div class="container">
+      <h2>Everything you need for race day</h2>
+      <div class="grid grid-4" style="margin-top:18px">
+        <div class="card">
+          <h3>TRRS: Registration</h3>
+          <ul class="list">
+            <li>Race creation & categories</li>
+            <li>Participant imports & payments</li>
+            <li>Bib assignment & packet reports</li>
+            <li>Exports to TRTS</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>TRTS: Timing</h3>
+          <ul class="list">
+            <li>Manual & RFID timing</li>
+            <li>Spacebar and bib entry workflow</li>
+            <li>Team scoring for XC; age groups for road*</li>
+            <li>CSV/HTML exports (Bootstrap-ready)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>TRWS: Web</h3>
+          <ul class="list">
+            <li>Live leaderboards & results</li>
+            <li>Mobile-friendly event pages</li>
+            <li>Admin finalize/certify results</li>
+            <li>Roadmap: registration front end</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>TRDS: Data</h3>
+          <ul class="list">
+            <li>Local & cloud DBs</li>
+            <li>Automatic failover</li>
+            <li>Centralized logging</li>
+            <li>Shared models & configs</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px">* Features listed may vary by release; see README for current capabilities.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="container row">
+      <div class="card">
+        <h2>How it works on race day</h2>
+        <ol class="list">
+          <li>Set up your races and entries in <strong>TRRS</strong>.</li>
+          <li>Open <strong>TRTS</strong> to configure chip/manual timing and start the event.</li>
+          <li>As results are recorded, publish them to <strong>TRWS</strong> for athletes and spectators.</li>
+          <li>All data flows through <strong>TRDS</strong> for reliability and simple backups.</li>
+        </ol>
+        <p class="muted">Prefer the terminal? Use the console launchers for automation and scripting.</p>
+      </div>
+      <div class="card">
+        <h2>Why timers choose TRMS</h2>
+        <ul class="list">
+          <li>Modern GTK4 GUI launcher with one‑click start</li>
+          <li>Lightweight console tools for remote sessions</li>
+          <li>Open-source, modular architecture</li>
+          <li>Designed by timers for timers</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="background:#fff">
+    <div class="container">
+      <h2>FAQ</h2>
+      <div class="grid grid-2" style="margin-top:12px">
+        <div class="card">
+          <h3>Does TRMS support chip timing?</h3>
+          <p class="muted">Yes. TRTS supports RFID chip timing as well as manual workflows, including spacebar capture and later bib assignment.</p>
+        </div>
+        <div class="card">
+          <h3>Can I run the database in the cloud?</h3>
+          <p class="muted">Absolutely. TRDS can connect to cloud or local databases and will automatically fail over when configured.</p>
+        </div>
+        <div class="card">
+          <h3>Is there a web results site?</h3>
+          <p class="muted">TRWS provides a unified web interface with live results and admin tools to finalize/certify results.</p>
+        </div>
+        <div class="card">
+          <h3>Is it open source?</h3>
+          <p class="muted">Yes. TRMS components are open source under the MIT License; see the repositories for details.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="section cta">
+    <div class="container">
+      <h2>Ready to modernize your race ops?</h2>
+      <p class="muted">Get a guided walkthrough or try the console tools. We’ll help you pick the best setup for your events.</p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:8px">
+        <a href="#" class="btn">Request a Demo</a>
+        <a href="#components" class="btn btn-outline">View Features</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> TRMS — The Race Management Solution</div>
+      <div class="muted">Registration • Timing • Web • Data</div>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
