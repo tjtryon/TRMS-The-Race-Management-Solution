@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# 🏁 TRMS: The Race Management Solution - Master Launcher
+# 🏁 TRMS: The Race Management Solution - Master Launcher (Wayland Support)
 # ═══════════════════════════════════════════════════════════════════════════════
 
 # Color codes
@@ -45,6 +45,15 @@ else
     fi
 fi
 
+# Detect display server
+if [ -n "$WAYLAND_DISPLAY" ]; then
+    echo -e "${GREEN}🖥️  Display: Wayland ($WAYLAND_DISPLAY)${NC}"
+elif [ -n "$DISPLAY" ]; then
+    echo -e "${YELLOW}🖥️  Display: X11 ($DISPLAY)${NC}"
+else
+    echo -e "${RED}⚠️  Display: None detected${NC}"
+fi
+
 # Check database environment
 if [ "$USE_CLOUD_DB" = "true" ]; then
     echo -e "${YELLOW}☁️  Database: Cloud${NC}"
@@ -57,7 +66,7 @@ echo -e "${WHITE}Select an application to launch:${NC}"
 echo ""
 echo -e "${GREEN}TRRS: The Race Registration Solution${NC}"
 echo "  1) 🖥️  Console Application"
-echo "  2) 🖼️  GUI Application (Coming Soon)"
+echo "  2) 🖼️  GUI Application"
 echo ""
 echo -e "${BLUE}TRTS: The Race Timing Solution${NC}"
 echo "  3) 🖥️  Console Application"
@@ -66,13 +75,14 @@ echo ""
 echo -e "${MAGENTA}System Utilities${NC}"
 echo "  5) 🔧 Database Setup"
 echo "  6) 📊 System Status"
-echo "  7) 🌐 Launch Web Interface (Coming Soon)"
+echo "  7) 🌐 Launch Web Interface"
 echo "  8) 🐳 Docker Management"
+echo "  9) 🖼️  Launch GTK4 GUI Launcher"
 echo ""
 echo "  0) Exit"
 echo ""
 
-read -p "Enter selection [0-8]: " choice
+read -p "Enter selection [0-9]: " choice
 
 case $choice in
     1)
@@ -80,8 +90,8 @@ case $choice in
         ./run_trrs_console.sh
         ;;
     2)
-        echo -e "\n${GREEN}TRRS GUI coming soon!${NC}"
-        echo "For now, please use the console application."
+        echo -e "\n${GREEN}Launching TRRS GUI...${NC}"
+        ./run_trrs_gui.sh
         ;;
     3)
         echo -e "\n${BLUE}Launching TRTS Console...${NC}"
@@ -89,17 +99,16 @@ case $choice in
         ;;
     4)
         echo -e "\n${BLUE}Launching TRTS GUI...${NC}"
-        cd "TRTS: The Race Timing Solution"
-        if [ -f "race_timing_gui.py" ]; then
-            $PYTHON_CMD race_timing_gui.py
-        else
-            echo "TRTS GUI not found in expected location"
-        fi
+        ./run_trts_gui.sh
         ;;
     5)
-        echo -e "\n${MAGENTA}Database Setup${NC}"
-        echo "Creating database schema..."
-        # Database setup will be implemented
+        echo -e "\n${MAGENTA}Running Database Setup...${NC}"
+        cd "TRDS: The Race Data Solution"
+        if [ -f "scripts/setup_database.sh" ]; then
+            ./scripts/setup_database.sh
+        else
+            echo "Database setup script not found"
+        fi
         ;;
     6)
         echo -e "\n${MAGENTA}System Status${NC}"
@@ -107,6 +116,19 @@ case $choice in
         echo -e "TRMS Base: ${WHITE}$TRMS_BASE${NC}"
         echo -e "Python: ${WHITE}$(which $PYTHON_CMD)${NC}"
         echo -e "Environment: ${WHITE}${TRMS_ENV:-development}${NC}"
+        
+        # Display server info
+        echo -e "\nDisplay Server:"
+        if [ -n "$WAYLAND_DISPLAY" ]; then
+            echo -e "  ${GREEN}✓ Wayland:${NC} $WAYLAND_DISPLAY"
+            echo -e "  ${CYAN}  Socket:${NC} $XDG_RUNTIME_DIR/wayland-*"
+        fi
+        if [ -n "$DISPLAY" ]; then
+            echo -e "  ${GREEN}✓ X11:${NC} $DISPLAY"
+        fi
+        if [ -z "$WAYLAND_DISPLAY" ] && [ -z "$DISPLAY" ]; then
+            echo -e "  ${RED}✗ No display server detected${NC}"
+        fi
         
         echo -e "\nDirectory Structure:"
         for dir in "TRRS: The Race Registration Solution" "TRTS: The Race Timing Solution" "TRWS: The Race Web Solution" "TRDS: The Race Data Solution"; do
@@ -121,27 +143,41 @@ case $choice in
         $0
         ;;
     7)
-        echo -e "\n${MAGENTA}Web Interface coming soon!${NC}"
-        echo "TRWS: The Race Web Solution will provide unified web access."
+        echo -e "\n${MAGENTA}Launching Web Interface...${NC}"
+        cd "TRWS: The Race Web Solution"
+        if [ -f "scripts/start_web.sh" ]; then
+            ./scripts/start_web.sh
+        else
+            echo "Web interface not yet configured"
+            echo "Run the web setup script first"
+        fi
         ;;
     8)
-        if [ "$DOCKER_AVAILABLE" = "true" ]; then
-            echo -e "\n${MAGENTA}Docker Management${NC}"
-            echo "1) Start Docker services"
-            echo "2) Stop Docker services"  
-            echo "3) View Docker status"
-            echo "4) View logs"
-            read -p "Select option: " docker_choice
-            
-            case $docker_choice in
-                1) echo "Docker services starting..." ;;
-                2) echo "Docker services stopping..." ;;
-                3) echo "Docker status..." ;;
-                4) echo "Docker logs..." ;;
-            esac
-        else
-            echo -e "\n${RED}Docker not available${NC}"
+        echo -e "\n${MAGENTA}Docker Management${NC}"
+        echo "1) Start Docker services"
+        echo "2) Stop Docker services"  
+        echo "3) View Docker status"
+        echo "4) View logs"
+        read -p "Select option: " docker_choice
+        
+        cd "TRDS: The Race Data Solution/docker"
+        case $docker_choice in
+            1) docker-compose up -d ;;
+            2) docker-compose down ;;
+            3) docker-compose ps ;;
+            4) docker-compose logs -f ;;
+        esac
+        ;;
+    9)
+        echo -e "\n${GREEN}Launching GTK4 GUI Launcher...${NC}"
+        if [ -n "$WAYLAND_DISPLAY" ]; then
+            echo -e "${CYAN}Using Wayland backend${NC}"
+            export GDK_BACKEND=wayland
+        elif [ -n "$DISPLAY" ]; then
+            echo -e "${CYAN}Using X11 backend${NC}"
+            export GDK_BACKEND=x11
         fi
+        ./trms_launcher_gui.py
         ;;
     0)
         echo -e "\n${GREEN}Goodbye!${NC}"
