@@ -7,6 +7,18 @@
 [![GTK](https://img.shields.io/badge/GTK-4.0-green)](https://www.gtk.org/)
 [![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
+## 🛠️ 2025-08-24 Currently Development Update Information
+
+# 🎯 Under full development since January 2024, this app is on target to release v1.2 or version 1.3 which will be the last release from the 2025 V1.x codebase with the fully integrated TRMS setup, as well as the free open source MIT Licensed TRTS. 
+
+# 🐳 As of August 2025, we are in the current development of a single click script, which builds, istalls TRMS Server, and configured Docker Containers to host various services.  We have standardized on using either the Docker debian-latest or the redhat/ubi89 as the console server software. The benefits of this will be a quick intall, with a tested codebase, which will allow for Midwest Event Services, Inc. to easily support our users in the event they need any fixes.  We have a standard configuration for a Wordpress database server (physical, virtual or docker - the installs are identical, repeatable and supportable), a standard configuration for a Wordpress web server (physical, virtual or docker - the installs are identical, repeatable and supportable), a standard configuration for a Race Database server physical, virtual or docker - the installs are identical, repeatable and supportable)
+
+# ⏱ We are working on really develiping the richness that goes into the ALWAYS-FREE TRTS: The Race Timing Solution. This includes a new timing clock application that syncs the start time from the database, and hosts a full screen monitor (or HDMI TV) standard configuration for a timing apps system, either a laptop or computer that will be the actual scoring apps server. 
+
+# We also have a case for a single All-in-on, laptop or NUC mini-pc and monitor, that will ack as a timing clock synced to the race clock, another single All-in-1, laptop or NIC mini-pc and monitor, for a timing point about 50 meters from the finish line, so that we can kinow and announce for "Everyone put your hands together for John Smith, from Carmel, Indiana. John is currently in 3rd place in his age group. Put your hands together for John, as he crosses thw finish line.   
+
+# In Q3, we have been developing Containers Docker & Kubernatis with monitoring the servers/services.Additionally, we can host your Wordpress DB, Wordpress Web and your PostgresSQL Race Database instances in the cloud. That would leave you will a local intall for TRTS: The Race Timing Solution for raceday tiing apps, which include the RFID Polling service, the race timing clock, the race timing application GUI and the Announcer application.
+
 ## 🏗️ Architecture
 
 ```
